@@ -1,0 +1,21 @@
+mklibdir:
+	@mkdir -p $(RELEASE_LIB)
+	@mkdir -p $(RELEASE_SLIB)
+
+PERL_FILTER = perl -n -e 's|$*.o|$(LIBNAME)($*.o)|; s|:| $@:|; print;'
+
+depends/$(OSNAME)/%$(DEBUG_SUFFIX).d: %.c
+	@echo depends/$(OSNAME)
+	@mkdir -p depends/$(OSNAME)
+	$(CC) -MM $(CFLAGS) $*.c | $(PERL_FILTER) > $@
+
+depends/$(OSNAME)/%$(DEBUG_SUFFIX).d: %.cc
+	@echo depends/$(OSNAME)
+	@mkdir -p depends/$(OSNAME)
+	$(CXX) -MM $(CXXFLAGS) $(DEPENDS_FLAGS) $*.cc | $(PERL_FILTER) > $@
+
+
+%Dict.cc:$(RELEASE_INC)/%.hh $(RELEASE_INC)/%LinkDef.h 
+	$(ROOTSYS)/bin/rootcint -f $@ -c $^
+
+-include $(DEPS)

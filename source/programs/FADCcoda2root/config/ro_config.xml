@@ -1,0 +1,96 @@
+<?xml version="1.0"?>
+<!-- ReadOut model table -->
+<config>
+<ROModelTable>
+
+<Module index="1" roc="1" crate="7" slot="2" ch_min="0" ch_max="8" model="SIS3301"/>
+
+</ROModelTable>
+
+<!-- ROC - Crate - Slot - Channel translation table -->
+
+<TranslationTable>
+
+<SubSystem index="1" ch="1" id="1" attribute="adc" name="adc_1"/>
+<SubSystem index="1" ch="2" id="2" attribute="adc" name="adc_2"/>
+<SubSystem index="1" ch="3" id="3" attribute="adc" name="adc_3"/>
+<SubSystem index="1" ch="4" id="4" attribute="adc" name="adc_4"/>
+<SubSystem index="1" ch="5" id="5" attribute="adc" name="adc_5"/>
+<SubSystem index="1" ch="6" id="6" attribute="adc" name="adc_6"/>
+<SubSystem index="1" ch="7" id="7" attribute="adc" name="adc_7"/>
+<SubSystem index="1" ch="8" id="8" attribute="adc" name="adc_8"/>
+
+</TranslationTable>
+
+
+
+
+<!-- IMPORTANT: Do not edit the information below unless you really   --> 
+<!--            know what you are doing                               -->
+
+<ROModelAttributes>
+<digit model="L2249SG" header="0" data_mask="0x03FF" chan_mask="0xF000" 
+chan_shift="12"/>
+   
+<digit model="L2249" header="0" data_mask="0x07FF" chan_mask="0xF000" 
+chan_shift="12"/>
+
+<digit model="S4418" header="0" data_mask="0x0FFF" chan_mask="0xF000" 
+chan_shift="12"/>
+
+<digit model="S4418s" header="2" data_mask="0x0FFF" chan_mask="0x7000" 
+chan_shift="12"/>
+
+<digit model="L1151" header="0" data_mask="0xFFFFFFFF" chan_mask="0x0000" 
+chan_shift="0"/>
+
+<digit model="P7186" header="0" data_mask="0x0FFF" chan_mask="0xF000"
+chan_shift="12"/>
+
+<digit model="P7186s" header="0" data_mask="0x0FFF" chan_mask="0xF000" 
+chan_shift="12"/>
+
+<digit model="K3610" header="0" data_mask="0xFFFFFF" chan_mask="0xF0000000" 
+chan_shift="28"/>
+
+<digit model="B1008" header="0" data_mask="0xFFFFFF" chan_mask="0xF0000000" 
+chan_shift="28"/>
+
+<digit model="E413" header="0" data_mask="0x1FFF" chan_mask="0xE000" 
+chan_shift="13"/>
+
+<digit model="E413s" header="1" data_mask="0x1FFF" chan_mask="0x6000" 
+chan_shift="13"/>
+
+<digit model="E811" header="0" data_mask="0x07FF" chan_mask="0xF000" 
+chan_shift="12"/>
+
+<digit model="B2351" header="0" data_mask="0x0FFF" chan_mask="0xF000" 
+chan_shift="12"/>
+
+<digit model="P7132" header="0" data_mask="0xFFFFFF" chan_mask="0xF0000000" 
+chan_shift="28"/>
+
+<digit model="P7167" header="0" data_mask="0x0FFF" chan_mask="0xF000" 
+chan_shift="12"/>
+
+<digit model="P7167s" header="0" data_mask="0x0FFF" chan_mask="0xF000" 
+chan_shift="12"/>
+
+<digit model="SIS3800" header="0" data_mask="0xFFFFFFFF" chan_mask="0x0000" 
+chan_shift="28"/>
+
+<digit model="SIS3600" header="0" data_mask="0xFFFFFFFF" chan_mask="0x3F000000" 
+chan_shift="28"/>
+
+<digit model="CAEN792" header="0" data_mask="0x0FFF" chan_mask="0x3F0000" 
+chan_shift="16"/>
+
+<digit model="CAEN775" header="0" data_mask="0x0FFF" chan_mask="0x3F0000" 
+chan_shift="16"/>
+
+<digit model="SIS3301" header="0" data_mask="0x3FFF" chan_mask="0x0000000F" 
+chan_shift="0"/>
+</ROModelAttributes>
+
+</config>

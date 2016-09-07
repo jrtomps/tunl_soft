@@ -1,0 +1,14 @@
+1) copy this entire directory and its content under your desired name
+
+cp -r ../coda2root_template ../my_experimentname
+
+2) edit ro_config.xml to reflect your experiment configuration
+
+3) edit tunl_soft.csh to refelct the experiment name and the location 
+of the raw datafiles
+
+4) everytime you open a new terminal you need to source (only once)
+source tunl_soft.csh 
+
+5) to create the root_file
+coda2root run_number

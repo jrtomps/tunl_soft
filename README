@@ -1,0 +1,48 @@
+Note: S. Stave 7/21/10
+Added auto-indexing to the flat_tree.  The id field 
+is now ignored and can be left out of the ro_config.xml file.  The 
+EventNumber and RunNumber are set properly in the flat_tree.
+There is also a realtime option (-rt) which will keep the file open for processing continuously.  This is still under development.
+
+
+----------------------------
+A. Teymurazyan 
+
+1) 
+To compile the software package set "RELEASE_MY" environment variable, example:
+
+     setenv RELEASE_MY /scratch/tunl_soft
+
+2) 
+source $RELASE_MY/scripts/release.tcsh
+this will setup environment variables needed for the successful compilation.
+Sourcing release.tcsh will also amend your PATH.
+
+3) 
+to run the "coda2root" parser 
+
+   - set "RELEASE_CODA_FILE_PATH", example:
+
+     	 			   setenv RELEASE_CODA_FILE_PATH /scratch/data/my_experiment_name
+
+!!!NOTE!!!: the name of the last directory in the path, i.e, "my_experiment_name" will be also regarded
+as the prefix for the coda file names. Meaning the coda2root parser will look for a file called 
+"my_experiment_name_XXX" (where 'XXX' is the run number) in /scratch/data/my_experiment_name.
+
+   - set "RELEASE_ROOT_FILE_PATH", example:
+			           
+                                   setenv RELEASE_ROOT_FILE_PATH /my_desired_path/for_output_root_files
+
+NOTE: the output of coda2root will be in /my_desired_path/for_output_root_files and will look like
+run_XXX_tree.root where 'XXX' is the run number.
+
+4) 
+type 'coda2root XXX' and be happy.
+
+5)
+make sure your RELEASE_CONFIG_PATH environment variable points to the desired configuration file, example:
+setenv RELEASE_CONFIG_PATH /scratch/tunl_soft/source/programs/coda2root/config/ro_config.xml
+
+
+If you need a bash version of the above instructions, write your own or try to bribe/blackmail someone who 
+will do it for you.

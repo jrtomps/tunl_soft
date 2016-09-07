@@ -1,0 +1,66 @@
+# Things common to both library and executable builds live in Makefile.common
+include $(RELEASE_CMS)/Makefile.common
+
+LD = $(CXX)
+
+ifdef DEBUG
+  LD_FLAGS += -g -pg
+endif
+
+
+ifndef EXENAME
+  EXENAME = $(MODULE_NAME)$(DEBUG_SUFFIX)
+endif
+
+VPATH = $(RELEASE_LIB)
+LD_DIRS = $(addprefix -L,$(RELEASE_LIB))
+
+LD_LIBS = $(addsuffix $(DEBUG_SUFFIX),$(addprefix -l,$(MODULES)))
+
+BINARY = $(RELEASE_BIN)/$(EXENAME)
+
+.PHONY:  mkbindir
+
+all: mklib mkbin
+
+mklib: mklibdir $(LIBNAME)($(OBJS)) 
+ifeq ($(OS),Darwin)
+	ranlib $(LIBNAME)
+endif
+
+mkbin: mkbindir $(BINARY)
+
+$(BINARY): $(LD_LIBS)
+	   $(LD) $(LD_FLAGS) $(LD_DIRS) $(LD_LIBS) -o $@
+
+mkbindir:
+	@mkdir -p $(RELEASE_BIN)
+
+clean:
+	rm -f $(BINARY) $(LIBNAME) *.o *.bak *~ #*#
+	rm -rf depends/$(OSNAME)
+
+env:
+	@echo CC		= $(CC)
+	@echo CXX		= $(CXX)
+	@echo LD		= $(LD)
+	@echo LD_LIBS		= $(LD_LIBS)
+	@echo LD_DIRS		= $(LD_DIRS)
+	@echo CFLAGS    	= $(CFLAGS)
+	@echo CXXFLAGS  	= $(CXXFLAGS)
+	@echo CSRC		= $(CSRC)
+	@echo CXXSRC    	= $(CXXSRC)
+	@echo LIBS		= $(LIBS)
+	@echo OSNAME    	= $(OSNAME)
+	@echo OBJS		= $(OBJS)
+	@echo EXENAME   	= $(EXENAME)
+	@echo ROOTGLIBS         = $(ROOTGLIBS)
+	@echo VPATH             = $(VPATH)
+
+include $(RELEASE_CMS)/Makefile.common.rules
+
+
+
+
+
+

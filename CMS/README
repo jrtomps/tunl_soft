@@ -1,0 +1,66 @@
+README for Code Management System (CMS)
+
+The CMS uses directory structure, environment variables and 
+muliple Makefiles to build software. 
+The system is organized in the following way:
+
+
+               SVN_REPOSITORY
+                      |
+    __________________|___________
+   |         |                    |
+scripts     CMS                source
+             |                    |
+            ...            _______|______
+                          |              |
+                       programs       libraries
+                          |              |
+                     _____|___       ____|_____________________
+                    |         |     |        |        |        |
+          evioDOMTreeParser  ...  libsrc  libsrc++  mc_event  ...
+
+The CMS directory should be pointed to by a TUNL_CMS environment
+variable.
+
+Code in the "libraries" directory is made into several libraries based
+on the name of the sub-directory holding the code. The library files
+themselves are placed in the directory:
+
+${HOME}/tunl_soft/lib/${OSNAME}. 
+
+The RELEASE_TOP_DIR environment variable must be defined. 
+
+By default, the release.tcsh file will respect any pre-existing 
+definition, but will set RELEASE_TOP_DIR to ${HOME} if it does 
+not find a definition.
+
+If you have a preferred location for this software set the RELEASE_MY
+environment variable.
+
+Make automatically checks the dates of the objects inside of the
+libraries to see if they need to be remade. OBJECTS ARE NOT KEPT IN
+THE SOURCE DIRECTORY TREE.
+
+Executables are made using the same principles as the libraries. 
+Each excutable has a its object code stored in its own library file in 
+the same directory as all other library files. The executable itself is
+placed in the directory ${RELEASE_MY}/bin/${OSNAME}.
+
+Shared objects for all the libraries are placed in:
+
+${RELEASE_MY}/slib/${OSNAME}
+
+these can be loaded into ROOT CINT if you are running your analysis in
+an interpreted mode.
+
+If the variable DEBUG is set when invoking "make", then debugging
+symbols will be included in all objects. The library and executable
+names will have _debug appended to them to keep them separate from
+non-debug versions. e.g.
+
+>make DEBUG=yes
+
+Note that the value DEBUG is set to is not checked so setting it to
+"no" will also produce output with debugging symbols.
+
+

@@ -1,0 +1,42 @@
+
+# Things common to both library and executable builds live in Makefile.common
+-include $(RELEASE_CMS)/Makefile.common
+
+
+.PHONY: mklibdir
+
+
+# First rule makes sure directories exist for output files
+all: mklibdir $(LIBNAME)($(OBJS)) $(SLIBNAME)
+
+ifeq ($(OS),Darwin)
+	ranlib $(LIBNAME)
+endif
+
+$(LIBNAME)($(OBJS)): 
+
+
+$(SLIBNAME):
+	$(CXX) -shared -Wl,-soname, -o $@ $(OBJS)
+
+clean:
+	rm -f $(LIBNAME) $(SLIBNAME) *.o *.bak *~ #*#
+	rm -rf depends/$(OSNAME)
+
+env:
+	@echo CC	= $(CC)
+	@echo CXX	= $(CXX)
+	@echo CFLAGS	= $(CFLAGS)
+	@echo CXXFLAGS	= $(CXXFLAGS)
+	@echo CSRC	= $(CSRC)
+	@echo CXXSRC	= $(CXXSRC)
+	@echo LIBS	= $(LIBS)
+	@echo OSNAME	= $(OSNAME)
+	@echo OBJS	= $(OBJS)
+	@echo LIBNAME	= $(LIBNAME)
+	@echo DEPS	= $(DEPS)
+
+-include $(RELEASE_CMS)/Makefile.common.rules
+
+
+
