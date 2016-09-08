@@ -1,6 +1,6 @@
 
 INCLUDES += -Iinclude
 
-MODULES  = $(MODULE_NAME) libsrc++ libsrc data_structure config_manager
+MODULES  = -llibsrc++ -llibsrc -ldata_structure -lconfig_manager
 
 -include $(RELEASE_CMS)/Makefile.bin
