@@ -1,5 +1,4 @@
 mklibdir:
-	@mkdir -p $(RELEASE_LIB)
 	@mkdir -p $(RELEASE_SLIB)
 
 PERL_FILTER = perl -n -e 's|$*.o|$(LIBNAME)($*.o)|; s|:| $@:|; print;'
@@ -16,6 +15,6 @@ depends/$(OSNAME)/%$(DEBUG_SUFFIX).d: %.cc
 
 
 %Dict.cc:$(RELEASE_INC)/%.hh $(RELEASE_INC)/%LinkDef.h 
-	$(ROOTSYS)/bin/rootcint -f $@ -c $^
+	$(ROOTSYS)/bin/rootcling -f $@ -c $^
 
 -include $(DEPS)

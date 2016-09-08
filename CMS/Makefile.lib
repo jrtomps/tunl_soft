@@ -7,17 +7,11 @@
 
 
 # First rule makes sure directories exist for output files
-all: mklibdir $(LIBNAME)($(OBJS)) $(SLIBNAME)
-
-ifeq ($(OS),Darwin)
-	ranlib $(LIBNAME)
-endif
-
-$(LIBNAME)($(OBJS)): 
+all: mklibdir $(OBJS) $(SLIBNAME)
 
 
 $(SLIBNAME):
-	$(CXX) -shared -Wl,-soname, -o $@ $(OBJS)
+	$(CXX) -shared -Wl,-soname, -o $@ $(OBJS) $(LD_FLAGS)
 
 clean:
 	rm -f $(LIBNAME) $(SLIBNAME) *.o *.bak *~ #*#

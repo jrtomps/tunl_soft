@@ -34,7 +34,7 @@ ifdef ROOTSYS
   ROOTCFLAGS   = $(shell root-config --cflags)
   ROOTGLIBS    = $(shell root-config --glibs) -lXMLIO
 
-  CFLAGS      += $(ROOTCFLAGS) 
+  CFLAGS      += $(filter-out -std=c++11,$(ROOTCFLAGS))
   CXXFLAGS    += $(ROOTCFLAGS) -fPIC
   LD_FLAGS    += $(ROOTGLIBS)
 endif
